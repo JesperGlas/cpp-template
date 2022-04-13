@@ -11,6 +11,11 @@ project(
     LANGUAGES CXX
 )
 
+# Compiler config
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+set(CMAKE_CXX_FLAGS "-Wall -Werror")
+
 # Set output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
@@ -25,6 +30,13 @@ configure_file(
     ${INCLUDE}/ProjectConfig.hpp.in
     ProjectConfig.hpp
 )
+
+# Enable testing
+enable_testing()
+
+# Add subdirs
+add_subdirectory(lib)
+add_subdirectory(tests)
 
 # Make app executable
 add_executable(
